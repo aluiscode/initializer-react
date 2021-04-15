@@ -38,8 +38,16 @@ cat > package.json << EOF
     "@babel/preset-react": "^7.13.13",
     "babel-loader": "^8.2.2",
     "babel-plugin-styled-components": "^1.12.0",
+    "eslint": "^7.24.0",
+    "eslint-config-prettier": "^8.2.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.23.2",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.1",
+    "prettier": "^2.2.1",
     "webpack": "^5.31.2",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2"
@@ -78,31 +86,6 @@ sketch
 EOF
 echo ".gitignore completed"
 
-#React install
-#npm i react react-dom
-
-#React router
-# npm i react-router-dom
-
-#Styled-components
-# npm i styled-components
-# npm i -D babel-plugin-styled-components
-
-
-#Webpack
-# npm i -D webpack webpack-cli webpack-dev-server
-
-#Plugins and loaders
-#HTML
-# npm i -D html-webpack-plugin html-loader
-
-
-#Babel
-# npm i -D babel-loader @babel/preset-env @babel/preset-react @babel/core
-#Agregar mimificación con styled-components
-
-
-#Eslint Prettier and Husky
 
 echo "Creating project structure"
 # Making folders
@@ -285,3 +268,56 @@ cat > .babelrc << EOF
 
 EOF
 echo "Webpack Added"
+
+# Formatear con Eslint in Visual Studio Code
+    # "[javascript]": {
+    #     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    #     "editor.formatOnSave": true
+    # },
+    # "[typescript]": {
+    #     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    #     "editor.formatOnSave": true
+    # },
+
+#Eslint Prettier and Husky
+
+echo "Eslint"
+touch .eslintrc.js
+cat > .eslintrc.js << EOF
+  module.exports = {
+  env: {
+    browser: true,
+    es2021: true
+  },
+  extends: [
+    'plugin:react/recommended',
+    'standard',
+    'prettier'
+  ],
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    },
+    ecmaVersion: 12,
+    sourceType: 'module'
+  },
+  plugins: [
+    'react'
+  ],
+  rules: {
+  }
+}
+
+EOF
+echo "Eslint added"
+
+echo "Prettier"
+touch .prettierrc
+cat > .prettierrc << EOF
+{
+  "semi": false,
+  "singleQuote": true
+}
+
+EOF
+echo "Prettier added"
